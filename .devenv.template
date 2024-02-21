@@ -1,0 +1,13 @@
+//
+//  Development.xcconfig
+//  WeaMap
+//
+//  Created by Mehdi Silini on 22/02/2024.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// DEV API KEY
+API_KEY = 
+
