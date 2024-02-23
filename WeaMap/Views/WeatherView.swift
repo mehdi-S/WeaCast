@@ -16,12 +16,12 @@ struct WeatherView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text(weaMapModel?.weather?.name ?? "")
+            Text(weaMapModel?.forecast?.city?.name ?? "")
         }
         .padding()
         .task {
             do {
-                try await weaMapModel?.fetchWeather(latitude: 35.6812546, longitude: 139.766706)
+                try await weaMapModel?.fetchForecast(latitude: 35.6812546, longitude: 139.766706)
             } catch {
                 print(error.localizedDescription)
             }

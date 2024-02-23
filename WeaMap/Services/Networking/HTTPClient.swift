@@ -73,11 +73,26 @@ class HTTPClient {
             throw NetworkError.invalidResponse
         }
         
-        guard let result = try? JSONDecoder().decode(T.self, from: data) else {
-            print("❌ DECODING ERROR - \(request.httpMethod!) \(request.url!)")
+        do {
+            return try JSONDecoder().decode(T.self, from: data)
+        } catch DecodingError.dataCorrupted(let context) {
+            print("❌ \(context)")
+            throw NetworkError.decodingError
+        } catch DecodingError.keyNotFound(let key, let context) {
+            print("❌ Key '\(key)' not found:", context.debugDescription)
+            print("| codingPath:", context.codingPath)
+            throw NetworkError.decodingError
+        } catch DecodingError.valueNotFound(let value, let context) {
+            print("❌ Value '\(value)' not found:", context.debugDescription)
+            print("| codingPath:", context.codingPath)
+            throw NetworkError.decodingError
+        } catch DecodingError.typeMismatch(let type, let context) {
+            print("❌ Type '\(type)' mismatch:", context.debugDescription)
+            print("| codingPath:", context.codingPath)
+            throw NetworkError.decodingError
+        } catch {
+            print("❌ error: ", error)
             throw NetworkError.decodingError
         }
-        
-        return result
     }
 }

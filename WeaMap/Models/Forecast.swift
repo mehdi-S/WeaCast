@@ -75,9 +75,9 @@ struct ForecastDTO: Codable {
             var description, icon: String?
             
             enum Main: String, Codable {
-                case clear
-                case clouds
-                case rain
+                case clear = "Clear"
+                case clouds = "Clouds"
+                case rain = "Rain"
             }
         }
         
