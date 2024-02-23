@@ -7,22 +7,22 @@
 
 import Foundation
 
-fileprivate let apiKey = EnvironmentProperty.API_KEY
+
 
 /// Endpoints for OpenWeatherMap API
 enum WeatherEndpoint: EndpointProtocol {
-    case getWeather(latitude: Double, longitude: Double)
-    case getForecast(latitude: Double, longitude: Double)
+    case getWeather
+    case getForecast
     
     var baseURL: URL {
         Self.default
     }
     var absoluteURL: URL {
         switch self {
-        case let .getWeather(latitude, longitude):
-            return URL(string: "weather?lat=\(latitude)&lon=\(longitude)&units=metric&appid=\(apiKey)", relativeTo: baseURL)!.absoluteURL
-        case let .getForecast(latitude, longitude):
-            return URL(string: "forecast?lat=\(latitude)&lon=\(longitude)&units=metric&appid=\(apiKey)", relativeTo: baseURL)!.absoluteURL
+        case .getWeather:
+            return URL(string: "weather", relativeTo: baseURL)!.absoluteURL
+        case .getForecast:
+            return URL(string: "forecast", relativeTo: baseURL)!.absoluteURL
         }
     }
 

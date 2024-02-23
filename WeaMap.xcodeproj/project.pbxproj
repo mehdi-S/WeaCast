@@ -57,7 +57,6 @@
 		3E3EC96B2B868B9B004A46CA /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		3E3EC96D2B869AAB004A46CA /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		3E3EC96F2B86A585004A46CA /* WeaMapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaMapModel.swift; sourceTree = "<group>"; };
-		3E3EC9712B87862B004A46CA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3E3EC9722B87B29D004A46CA /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		3E3EC9742B87B436004A46CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3E3EC9752B87B490004A46CA /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
@@ -118,7 +117,6 @@
 				3E3EC95F2B867EB6004A46CA /* Extensions */,
 				3E3EC9622B867F97004A46CA /* Utilities */,
 				3E3EC9602B867ECE004A46CA /* Ressources */,
-				3E3EC9712B87862B004A46CA /* README.md */,
 				3E3EC9742B87B436004A46CA /* Info.plist */,
 				3E3EC9722B87B29D004A46CA /* Development.xcconfig */,
 			);

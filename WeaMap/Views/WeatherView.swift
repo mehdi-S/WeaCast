@@ -21,7 +21,7 @@ struct WeatherView: View {
         .padding()
         .task {
             do {
-                try await weaMapModel?.fetchWeather()
+                try await weaMapModel?.fetchWeather(latitude: 35.6812546, longitude: 139.766706)
             } catch {
                 print(error.localizedDescription)
             }
