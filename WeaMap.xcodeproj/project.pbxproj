@@ -23,6 +23,7 @@
 		3E3EC9762B87B490004A46CA /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC9752B87B490004A46CA /* Environment.swift */; };
 		3E3EC97A2B894FE1004A46CA /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC9792B894FE1004A46CA /* LoadingView.swift */; };
 		3E3EC97E2B8A1B5F004A46CA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC97D2B8A1B5F004A46CA /* ErrorView.swift */; };
+		3E3EC9802B8A1F53004A46CA /* DelayAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC97F2B8A1F53004A46CA /* DelayAppearance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		3E3EC9752B87B490004A46CA /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		3E3EC9792B894FE1004A46CA /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		3E3EC97D2B8A1B5F004A46CA /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		3E3EC97F2B8A1F53004A46CA /* DelayAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayAppearance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 				3E3EC9352B8660F0004A46CA /* WeatherView.swift */,
 				3E3EC9792B894FE1004A46CA /* LoadingView.swift */,
 				3E3EC97D2B8A1B5F004A46CA /* ErrorView.swift */,
+				3E3EC97F2B8A1F53004A46CA /* DelayAppearance.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				3E3EC9702B86A585004A46CA /* WeaMapModel.swift in Sources */,
 				3E3EC9682B8680B1004A46CA /* OpenWeatherMapEndpoint.swift in Sources */,
 				3E3EC9662B868081004A46CA /* EndpointProtocol.swift in Sources */,
+				3E3EC9802B8A1F53004A46CA /* DelayAppearance.swift in Sources */,
 				3E3EC97A2B894FE1004A46CA /* LoadingView.swift in Sources */,
 				3E3EC9362B8660F0004A46CA /* WeatherView.swift in Sources */,
 				3E3EC9762B87B490004A46CA /* Environment.swift in Sources */,

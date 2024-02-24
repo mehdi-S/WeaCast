@@ -16,10 +16,12 @@ struct WeatherView: View {
         
         switch state {
         case .idle, .loading:
-            LoadingView()
-                .task {
-                    await weaMapModel.fetchWeather(coordinate: weaMapModel.parisCoord)
-                }
+            VStack {
+                LoadingView()
+                    .delayAppearance(bySeconds: 1)
+            }.task {
+                await weaMapModel.fetchWeather(coordinate: weaMapModel.parisCoord)
+            }
         case .finished(let weather):
             LoadedView(data: weather)
         case .failed(let error):
