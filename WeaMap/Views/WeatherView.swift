@@ -9,23 +9,36 @@ import SwiftUI
 
 struct WeatherView: View {
     
-    @Environment(WeaMapModel.self) private var weaMapModel: WeaMapModel?
+    @Environment(WeaMapModel.self) private var weaMapModel: WeaMapModel
     
     var body: some View {
+        @State var state = weaMapModel.weatherState
+        
+        switch state {
+        case .idle, .loading:
+            LoadingView()
+                .task {
+                    await weaMapModel.fetchWeather(coordinate: weaMapModel.parisCoord)
+                }
+        case .finished(let weather):
+            LoadedView(data: weather)
+        case .failed(let error):
+            ErrorView(error: error, asyncOnTap: {
+                await weaMapModel.fetchWeather(coordinate: weaMapModel.parisCoord)
+            })
+        }
+    }
+    
+    @ViewBuilder
+    func LoadedView(data weather: WeatherDTO) -> some View {
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text(weaMapModel?.forecast?.city?.name ?? "")
+            Text(weather.name ?? "")
+            Text(weather.main?.temp?.description ?? "")
         }
         .padding()
-        .task {
-            do {
-                try await weaMapModel?.fetchForecast(latitude: 35.6812546, longitude: 139.766706)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
     }
 }
 
