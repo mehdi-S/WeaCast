@@ -31,6 +31,8 @@
 		3E3EC98C2B8A7ED1004A46CA /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC98B2B8A7ED1004A46CA /* AppColors.swift */; };
 		3E3EC98E2B8A88B3004A46CA /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC98D2B8A88B3004A46CA /* AppUtilities.swift */; };
 		3E3EC9922B8BF27B004A46CA /* WeatherConditionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC9912B8BF27B004A46CA /* WeatherConditionCard.swift */; };
+		3E3EC9942B8CBEA4004A46CA /* WeatherDataCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC9932B8CBEA4004A46CA /* WeatherDataCard.swift */; };
+		3E3EC9962B8CEC08004A46CA /* MainWeatherTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC9952B8CEC08004A46CA /* MainWeatherTile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		3E3EC98B2B8A7ED1004A46CA /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		3E3EC98D2B8A88B3004A46CA /* AppUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtilities.swift; sourceTree = "<group>"; };
 		3E3EC9912B8BF27B004A46CA /* WeatherConditionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConditionCard.swift; sourceTree = "<group>"; };
+		3E3EC9932B8CBEA4004A46CA /* WeatherDataCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataCard.swift; sourceTree = "<group>"; };
+		3E3EC9952B8CEC08004A46CA /* MainWeatherTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeatherTile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +191,8 @@
 				3E3EC97F2B8A1F53004A46CA /* DelayAppearance.swift */,
 				3E3EC9872B8A5F63004A46CA /* AsyncImageBuilder.swift */,
 				3E3EC9912B8BF27B004A46CA /* WeatherConditionCard.swift */,
+				3E3EC9932B8CBEA4004A46CA /* WeatherDataCard.swift */,
+				3E3EC9952B8CEC08004A46CA /* MainWeatherTile.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -380,6 +386,7 @@
 				3E3EC9682B8680B1004A46CA /* OpenWeatherMapEndpoint.swift in Sources */,
 				3E3EC9662B868081004A46CA /* EndpointProtocol.swift in Sources */,
 				3E3EC9802B8A1F53004A46CA /* DelayAppearance.swift in Sources */,
+				3E3EC9942B8CBEA4004A46CA /* WeatherDataCard.swift in Sources */,
 				3E3EC97A2B894FE1004A46CA /* LoadingView.swift in Sources */,
 				3E3EC9362B8660F0004A46CA /* WeatherView.swift in Sources */,
 				3E3EC9762B87B490004A46CA /* Environment.swift in Sources */,
@@ -388,6 +395,7 @@
 				3E3EC96E2B869AAB004A46CA /* HTTPClient.swift in Sources */,
 				3E3EC98E2B8A88B3004A46CA /* AppUtilities.swift in Sources */,
 				3E3EC9342B8660F0004A46CA /* WeaMapApp.swift in Sources */,
+				3E3EC9962B8CEC08004A46CA /* MainWeatherTile.swift in Sources */,
 				3E3EC98A2B8A7DB9004A46CA /* Color+Extensions.swift in Sources */,
 				3E3EC96C2B868B9B004A46CA /* Forecast.swift in Sources */,
 				3E3EC98C2B8A7ED1004A46CA /* AppColors.swift in Sources */,

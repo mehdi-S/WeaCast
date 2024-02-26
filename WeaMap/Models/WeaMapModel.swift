@@ -51,7 +51,7 @@ class WeaMapModel {
         var latitude: Double
         var longitude: Double
     }
-    
+
     func testError() async {
         do {
             self.weatherState = .loading

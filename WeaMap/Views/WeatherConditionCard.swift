@@ -15,19 +15,21 @@ struct WeatherConditionCard: View {
             if let iconId = weatherData.icon {
                 AsyncImageBuilder(url: URL(string: "https://openweathermap.org/img/wn/\(iconId)@2x.png"))
                     .shadow(color: .black.opacity(0.3), radius: 6)
-                    .background(.regularMaterial, in: Circle())
+                    .background(.thinMaterial, in: Circle())
                     .padding(.top, 12)
+                    .frame(maxHeight: .infinity)
             }
             Text(weatherData.description ?? "no description")
                 .font(.headline)
                 .minimumScaleFactor(0.4)
                 .multilineTextAlignment(.center)
                 .padding(4)
-                .frame(maxHeight: .infinity)
+                .padding(.bottom, 8)
+                .padding(.horizontal, 8)
         }
-        .frame(width: 90, height: 120)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 10,
-                                                           style: .continuous)
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 120, maxHeight: 120)
+        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 10,
+                                                        style: .continuous)
         )
     }
 }

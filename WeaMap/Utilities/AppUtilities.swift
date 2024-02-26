@@ -8,5 +8,5 @@
 import Foundation
 
 struct AppUtilities {
-    static let localDateFormatter = DateFormatter()
+    static let dateFormatter = DateFormatter()
 }

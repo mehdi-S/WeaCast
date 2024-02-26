@@ -23,15 +23,9 @@ struct WeatherView: View {
                 await weaMapModel.fetchWeather(coordinate: weaMapModel.parisCoord)
             }
         case .finished(let weather):
-//            var testWeather = WeatherDTO(weather: [
-//                WeatherDTO.Weather(id: 2, description: "test tes tes te", icon: "01d"),
-//                WeatherDTO.Weather(id: 1, description: "test tes tes", icon: "02d"),
-//                WeatherDTO.Weather(id: 3, description: "test tes tes", icon: "02d"),
-//                WeatherDTO.Weather(id: 4, description: "test tes tes", icon: "02d"),
-//                WeatherDTO.Weather(id: 5, description: "test tes tes", icon: "02d"),
-//                WeatherDTO.Weather(id: 6, description: "test tes tes", icon: "02d")
-//            ])
-            LoadedView(data: weather)
+            NavigationStack {
+                LoadedView(data: weather)
+            }
         case .failed(let error):
             ErrorView(error: error, asyncOnTap: {
                 await weaMapModel.fetchWeather(coordinate: weaMapModel.parisCoord)
@@ -43,10 +37,8 @@ struct WeatherView: View {
     @ViewBuilder
     func LoadedView(data weather: WeatherDTO) -> some View {
         @State var gradientColor: GradientColor = weaMapModel.actualGradientColor
-        
-        let columns = [
-            GridItem(.adaptive(minimum: 90))
-        ]
+        @State var columns = Array(repeating: GridItem(.flexible()),
+                                   count: weather.numberOfDataItem % 2 == 0 ? 2 : 3)
         
         ZStack {
             RadialGradient(colors: gradientColor.colorPalette,
@@ -55,24 +47,32 @@ struct WeatherView: View {
                            endRadius: 250)
             .ignoresSafeArea()
             ScrollView {
-                HStack(alignment: .center) {
-                    Image(systemName: "location.circle.fill")
-                        .symbolRenderingMode(.multicolor)
-                    Text(weather.name ?? "can't find location")
-                }
-                Text(weather.main?.temp?.description ?? "")
-                Text(weather.main?.feelsLike?.description ?? "")
-                if let weatherConditions = weather.weather {
-                    LazyVGrid(columns: columns) {
-                        ForEach(weatherConditions, id: \.id) { condition in
-                            WeatherConditionCard(weatherData: condition)
+                VStack(spacing: 25) {
+                    HStack(alignment: .center) {
+                        Image(systemName: "location.circle.fill")
+                            .symbolRenderingMode(.multicolor)
+                        Text(weather.name ?? "can't find location")
+                    }
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 6)
+                    .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 12,
+                                                                    style: .continuous)
+                    )
+                    VStack(spacing: 15) {
+                        MainWeatherTile(sunrise: weather.sunriseDisplayable,
+                                        sunset: weather.sunsetDisplayable,
+                                        temperature: weather.temperatureDisplayable)
+                        if let weatherConditions = weather.weather {
+                            LazyVGrid(columns: columns) {
+                                ForEach(weatherConditions, id: \.id) { condition in
+                                    WeatherConditionCard(weatherData: condition)
+                                }
+                                ForEach(weather.groupedWeatherData) { data in
+                                    WeatherDataCard(weatherData: data.value, unit: data.unit, description: data.description)
+                                }
+                            }
                         }
                     }
-                }
-                if let unix = weather.dt, let sunset = weather.sys?.sunset, let sunrise = weather.sys?.sunrise {
-                    Text("time " + Date(timeIntervalSince1970: TimeInterval(unix) + Double(TimeZone.current.secondsFromGMT())).description)
-                    Text("sunrise " + Date(timeIntervalSince1970: TimeInterval(sunrise) + Double(TimeZone.current.secondsFromGMT())).description)
-                    Text("sunset " + Date(timeIntervalSince1970: TimeInterval(sunset) + Double(TimeZone.current.secondsFromGMT())).description)
                 }
             }.padding(.horizontal, 16)
         }
