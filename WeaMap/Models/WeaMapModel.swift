@@ -20,6 +20,17 @@ class WeaMapModel {
     var japanCoord: Coordinate = Coordinate(latitude: 35.6812546, longitude: 139.766706)
     var parisCoord: Coordinate = Coordinate(latitude: 48.790730, longitude: 2.511950)
     
+    var defaultGradientColor = GradientColor(colorPalette: AppColors.dayColorPalette, center: .top)
+    var actualGradientColor: GradientColor {
+        if let weather = weatherState.value,
+           let dt = weather.dt,
+           let sunrise = weather.sys?.sunrise,
+           let sunset = weather.sys?.sunset {
+            return actualGradient(time: TimeInterval(dt), sunrise: TimeInterval(sunrise), sunset: TimeInterval(sunset))
+        }
+        return defaultGradientColor
+    }
+    
     enum ResultState<T: Codable> {
         case idle
         case loading
@@ -87,5 +98,56 @@ class WeaMapModel {
         } catch {
             self.forecastState = .failed(error)
         }
+    }
+    
+    func actualGradient(time actual: TimeInterval, sunrise: TimeInterval, sunset: TimeInterval) -> GradientColor {
+        let day: Double = 86400
+        
+        if actual >= sunrise && actual <= sunset {
+            let base = actual - sunrise
+            let tier = (base * 3) / (sunset - sunrise)
+            
+            switch tier {
+            case let x where x <= 1:
+                return GradientColor(colorPalette: AppColors.dayColorPalette, center: .topLeading)
+            case let x where x <= 2:
+                return GradientColor(colorPalette: AppColors.dayColorPalette, center: .top)
+            case let x where x > 2:
+                return GradientColor(colorPalette: AppColors.dayColorPalette, center: .topTrailing)
+            default:
+                fatalError("Should not happen")
+            }
+        }
+        else if actual >= sunset {
+            let base = actual - sunset
+            let tier = (base * 3) / ((sunrise + day) - sunset)
+            
+            switch tier {
+            case let x where x <= 1:
+                return GradientColor(colorPalette: AppColors.nightColorPalette, center: .topLeading)
+            case let x where x <= 2:
+                return GradientColor(colorPalette: AppColors.nightColorPalette, center: .top)
+            case let x where x > 2:
+                return GradientColor(colorPalette: AppColors.nightColorPalette, center: .topTrailing)
+            default:
+                fatalError("Should not happen")
+            }
+        }
+        else if actual <= sunrise {
+            let base = actual - (sunset - day)
+            let tier = (base * 3) / (sunrise - (sunset - day))
+            
+            switch tier {
+            case let x where x <= 1:
+                return GradientColor(colorPalette: AppColors.nightColorPalette, center: .topLeading)
+            case let x where x <= 2:
+                return GradientColor(colorPalette: AppColors.nightColorPalette, center: .top)
+            case let x where x > 2:
+                return GradientColor(colorPalette: AppColors.nightColorPalette, center: .topTrailing)
+            default:
+                fatalError("Should not happen")
+            }
+        }
+        return self.defaultGradientColor
     }
 }

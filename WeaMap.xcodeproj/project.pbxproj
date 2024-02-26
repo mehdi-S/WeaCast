@@ -24,6 +24,13 @@
 		3E3EC97A2B894FE1004A46CA /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC9792B894FE1004A46CA /* LoadingView.swift */; };
 		3E3EC97E2B8A1B5F004A46CA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC97D2B8A1B5F004A46CA /* ErrorView.swift */; };
 		3E3EC9802B8A1F53004A46CA /* DelayAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC97F2B8A1F53004A46CA /* DelayAppearance.swift */; };
+		3E3EC9842B8A2EA1004A46CA /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC9832B8A2EA1004A46CA /* String+Extensions.swift */; };
+		3E3EC9862B8A2EC8004A46CA /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC9852B8A2EC8004A46CA /* View+Extensions.swift */; };
+		3E3EC9882B8A5F63004A46CA /* AsyncImageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC9872B8A5F63004A46CA /* AsyncImageBuilder.swift */; };
+		3E3EC98A2B8A7DB9004A46CA /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC9892B8A7DB9004A46CA /* Color+Extensions.swift */; };
+		3E3EC98C2B8A7ED1004A46CA /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC98B2B8A7ED1004A46CA /* AppColors.swift */; };
+		3E3EC98E2B8A88B3004A46CA /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC98D2B8A88B3004A46CA /* AppUtilities.swift */; };
+		3E3EC9922B8BF27B004A46CA /* WeatherConditionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EC9912B8BF27B004A46CA /* WeatherConditionCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +73,13 @@
 		3E3EC9792B894FE1004A46CA /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		3E3EC97D2B8A1B5F004A46CA /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		3E3EC97F2B8A1F53004A46CA /* DelayAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayAppearance.swift; sourceTree = "<group>"; };
+		3E3EC9832B8A2EA1004A46CA /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		3E3EC9852B8A2EC8004A46CA /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		3E3EC9872B8A5F63004A46CA /* AsyncImageBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageBuilder.swift; sourceTree = "<group>"; };
+		3E3EC9892B8A7DB9004A46CA /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		3E3EC98B2B8A7ED1004A46CA /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		3E3EC98D2B8A88B3004A46CA /* AppUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtilities.swift; sourceTree = "<group>"; };
+		3E3EC9912B8BF27B004A46CA /* WeatherConditionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConditionCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +185,8 @@
 				3E3EC9792B894FE1004A46CA /* LoadingView.swift */,
 				3E3EC97D2B8A1B5F004A46CA /* ErrorView.swift */,
 				3E3EC97F2B8A1F53004A46CA /* DelayAppearance.swift */,
+				3E3EC9872B8A5F63004A46CA /* AsyncImageBuilder.swift */,
+				3E3EC9912B8BF27B004A46CA /* WeatherConditionCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -178,6 +194,9 @@
 		3E3EC95F2B867EB6004A46CA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3E3EC9832B8A2EA1004A46CA /* String+Extensions.swift */,
+				3E3EC9852B8A2EC8004A46CA /* View+Extensions.swift */,
+				3E3EC9892B8A7DB9004A46CA /* Color+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -203,6 +222,8 @@
 			isa = PBXGroup;
 			children = (
 				3E3EC9752B87B490004A46CA /* Environment.swift */,
+				3E3EC98B2B8A7ED1004A46CA /* AppColors.swift */,
+				3E3EC98D2B8A88B3004A46CA /* AppUtilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -363,9 +384,16 @@
 				3E3EC9362B8660F0004A46CA /* WeatherView.swift in Sources */,
 				3E3EC9762B87B490004A46CA /* Environment.swift in Sources */,
 				3E3EC97E2B8A1B5F004A46CA /* ErrorView.swift in Sources */,
+				3E3EC9842B8A2EA1004A46CA /* String+Extensions.swift in Sources */,
 				3E3EC96E2B869AAB004A46CA /* HTTPClient.swift in Sources */,
+				3E3EC98E2B8A88B3004A46CA /* AppUtilities.swift in Sources */,
 				3E3EC9342B8660F0004A46CA /* WeaMapApp.swift in Sources */,
+				3E3EC98A2B8A7DB9004A46CA /* Color+Extensions.swift in Sources */,
 				3E3EC96C2B868B9B004A46CA /* Forecast.swift in Sources */,
+				3E3EC98C2B8A7ED1004A46CA /* AppColors.swift in Sources */,
+				3E3EC9862B8A2EC8004A46CA /* View+Extensions.swift in Sources */,
+				3E3EC9882B8A5F63004A46CA /* AsyncImageBuilder.swift in Sources */,
+				3E3EC9922B8BF27B004A46CA /* WeatherConditionCard.swift in Sources */,
 				3E3EC96A2B868B87004A46CA /* Weather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
