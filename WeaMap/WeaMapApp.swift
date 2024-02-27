@@ -14,7 +14,7 @@ struct WeaMapApp: App {
     
     var body: some Scene {
         WindowGroup {
-            WeatherView()
+            AppHomeView()
                 .environment(weaMapModel)
         }
     }
