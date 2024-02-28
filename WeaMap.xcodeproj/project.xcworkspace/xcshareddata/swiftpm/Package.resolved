@@ -17,6 +17,15 @@
         "revision" : "0a5bc04095a675662cf24757cc0640aa2204253b",
         "version" : "1.0.2"
       }
+    },
+    {
+      "identity" : "xctest-gherkin",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/net-a-porter-mobile/XCTest-Gherkin",
+      "state" : {
+        "revision" : "877b7b1be8bc476ecc402b4aa45a0fb67d03350c",
+        "version" : "0.21.2"
+      }
     }
   ],
   "version" : 2
