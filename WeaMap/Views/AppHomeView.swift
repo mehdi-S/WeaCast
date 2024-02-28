@@ -10,10 +10,11 @@ import SwiftUI
 struct AppHomeView: View {
     @Environment(WeaMapModel.self) private var weaMapModel: WeaMapModel
     @State private var selectedWeatherDisplayable: WeatherDisplayable?
+    private var coordinate = Coordinate(city: .paris)
     
     var body: some View {
         NavigationSplitView {
-            WeatherListView(selectedDataBinding: $selectedWeatherDisplayable)
+            WeatherListView(selectedDataBinding: $selectedWeatherDisplayable, coordinate: coordinate)
                 .navigationTitle("Weather forecast")
         } detail: {
             if let displayable = selectedWeatherDisplayable, selectedWeatherDisplayable?.date.index != 0 {
@@ -24,7 +25,7 @@ struct AppHomeView: View {
                 .toolbarBackground(.ultraThinMaterial)
                 .navigationBarTitleDisplayMode(.inline)
             } else {
-                WeatherActualView()
+                WeatherActualView(coordinate: coordinate)
                     .environment(weaMapModel)
                     .toolbarBackground(.ultraThinMaterial)
                     .navigationBarTitleDisplayMode(.inline)

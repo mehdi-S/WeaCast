@@ -40,6 +40,7 @@
 		3E5496652B8E6DAD00490AC2 /* TimeInterval+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5496642B8E6DAD00490AC2 /* TimeInterval+Extensions.swift */; };
 		3E5496692B8F59AC00490AC2 /* WeatherForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5496682B8F59AC00490AC2 /* WeatherForecastView.swift */; };
 		3E54966E2B8F82F600490AC2 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 3E54966D2B8F82F600490AC2 /* Algorithms */; };
+		3E65E0B32B8F913300369E77 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E65E0B22B8F913300369E77 /* Coordinate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		3E5496622B8E5E8E00490AC2 /* WeatherDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDisplayable.swift; sourceTree = "<group>"; };
 		3E5496642B8E6DAD00490AC2 /* TimeInterval+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extensions.swift"; sourceTree = "<group>"; };
 		3E5496682B8F59AC00490AC2 /* WeatherForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastView.swift; sourceTree = "<group>"; };
+		3E65E0B22B8F913300369E77 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				3E3EC96B2B868B9B004A46CA /* Forecast.swift */,
 				3E3EC96F2B86A585004A46CA /* WeaMapModel.swift */,
 				3E5496622B8E5E8E00490AC2 /* WeatherDisplayable.swift */,
+				3E65E0B22B8F913300369E77 /* Coordinate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				3E3EC9942B8CBEA4004A46CA /* WeatherDataCard.swift in Sources */,
 				3E3EC97A2B894FE1004A46CA /* LoadingView.swift in Sources */,
 				3E3EC9362B8660F0004A46CA /* WeatherActualView.swift in Sources */,
+				3E65E0B32B8F913300369E77 /* Coordinate.swift in Sources */,
 				3E3EC9762B87B490004A46CA /* Environment.swift in Sources */,
 				3E3EC97E2B8A1B5F004A46CA /* ErrorView.swift in Sources */,
 				3E5496652B8E6DAD00490AC2 /* TimeInterval+Extensions.swift in Sources */,

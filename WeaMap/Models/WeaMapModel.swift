@@ -17,8 +17,6 @@ class WeaMapModel {
     let client = HTTPClient()
     var weatherState: ResultState<WeatherDTO> = .idle
     var forecastState: ResultState<ForecastDTO> = .idle
-    var japanCoord: Coordinate = Coordinate(latitude: 35.6812546, longitude: 139.766706)
-    var parisCoord: Coordinate = Coordinate(latitude: 48.790730, longitude: 2.511950)
     
     var actualGradientColor: GradientColor {
         if let weather = weatherState.value,
@@ -44,11 +42,6 @@ class WeaMapModel {
                 return nil
             }
         }
-    }
-    
-    struct Coordinate {
-        var latitude: Double
-        var longitude: Double
     }
 
     func testError() async {

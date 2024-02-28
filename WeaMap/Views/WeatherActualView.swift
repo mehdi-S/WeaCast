@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct WeatherActualView: View {
-    
+
     @Environment(WeaMapModel.self) private var weaMapModel: WeaMapModel
+    private var coordinate: Coordinate
+    
+    init(coordinate: Coordinate = Coordinate(city: .paris)) {
+        self.coordinate = coordinate
+    }
     
     var body: some View {
         @State var state = weaMapModel.weatherState
@@ -20,7 +25,7 @@ struct WeatherActualView: View {
                 LoadingView()
                     .delayAppearance(bySeconds: 1)
             }.task {
-                await weaMapModel.fetchWeather(coordinate: weaMapModel.parisCoord)
+                await weaMapModel.fetchWeather(coordinate: coordinate)
             }
         case .finished(let weather):
             NavigationStack {
@@ -28,7 +33,7 @@ struct WeatherActualView: View {
             }
         case .failed(let error):
             ErrorView(error: error, asyncOnTap: {
-                await weaMapModel.fetchWeather(coordinate: weaMapModel.parisCoord)
+                await weaMapModel.fetchWeather(coordinate: coordinate)
             })
         }
     }

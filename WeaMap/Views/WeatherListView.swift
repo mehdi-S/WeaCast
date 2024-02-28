@@ -10,8 +10,10 @@ import SwiftUI
 struct WeatherListView: View {
     @Environment(WeaMapModel.self) private var weaMapModel: WeaMapModel
     @Binding private var selectedCellData: WeatherDisplayable?
-    
-    init(selectedDataBinding: Binding<WeatherDisplayable?>) {
+    private var coordinate: Coordinate
+
+    init(selectedDataBinding: Binding<WeatherDisplayable?>, coordinate: Coordinate = Coordinate(city: .paris)) {
+        self.coordinate = coordinate
         self._selectedCellData = selectedDataBinding
     }
     
@@ -24,7 +26,7 @@ struct WeatherListView: View {
                 LoadingView()
                     .delayAppearance(bySeconds: 1)
             }.task {
-                await weaMapModel.fetchForecast(coordinate: weaMapModel.parisCoord)
+                await weaMapModel.fetchForecast(coordinate: coordinate)
             }
         case .finished(let forecast):
             let datas = Array(0...4).compactMap { forecast.forDate(todayOffset: $0) }
@@ -35,7 +37,7 @@ struct WeatherListView: View {
                 }
         case .failed(let error):
             ErrorView(error: error, asyncOnTap: {
-                await weaMapModel.fetchForecast(coordinate: weaMapModel.parisCoord)
+                await weaMapModel.fetchForecast(coordinate: coordinate)
             })
         }
     }
