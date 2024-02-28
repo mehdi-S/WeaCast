@@ -9,15 +9,21 @@ import SwiftUI
 
 struct AppHomeView: View {
     @Environment(WeaMapModel.self) private var weaMapModel: WeaMapModel
-    @State private var selectedData: DataModel?
+    @State private var selectedWeatherDisplayable: WeatherDisplayable?
     
     var body: some View {
         NavigationSplitView {
-            WeatherListView()
-                .environment(weaMapModel)
+            WeatherListView(selectedDataBinding: $selectedWeatherDisplayable)
+                .navigationTitle("Weather forecast")
         } detail: {
-            WeatherView()
-                .environment(weaMapModel)
+            if selectedWeatherDisplayable == nil || selectedWeatherDisplayable?.date.index == 0 {
+                WeatherView()
+                    .environment(weaMapModel)
+                    .toolbarBackground(.ultraThinMaterial)
+            } else {
+                Text(selectedWeatherDisplayable?.header.temperature.dataDescription ?? "nil")
+                    .toolbarBackground(.ultraThinMaterial)
+            }
         }
     }
 }

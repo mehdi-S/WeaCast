@@ -8,7 +8,4 @@
 import Foundation
 
 extension String {
-    static func placeholder(_ length: Int) -> String {
-        String(Array(repeating: "X", count: length))
-    }
 }

@@ -15,6 +15,7 @@ struct WeaMapApp: App {
     var body: some Scene {
         WindowGroup {
             AppHomeView()
+                .tint(.accentColor)
                 .environment(weaMapModel)
         }
     }

@@ -91,25 +91,11 @@ extension WeatherDTO {
     }
     
     var sunriseDisplayable: String {
-        var formatter = AppUtilities.dateFormatter
-        formatter.dateFormat = "hh:mm"
-        if let sunrise = sys?.sunrise {
-            let date = Date(timeIntervalSince1970: TimeInterval(sunrise) + Double(TimeZone.current.secondsFromGMT()))
-            return formatter.string(from: date).description
-        }
-        
-        return "--:--"
+        return self.sys?.sunrise == nil ? "--:--" : TimeInterval(self.sys!.sunrise!).hourDisplayable
     }
     
     var sunsetDisplayable: String {
-        var formatter = AppUtilities.dateFormatter
-        formatter.dateFormat = "hh:mm"
-        if let sunset = sys?.sunset {
-            let date = Date(timeIntervalSince1970: TimeInterval(sunset) + Double(TimeZone.current.secondsFromGMT()))
-            return formatter.string(from: date).description
-        }
-        
-        return "--:--"
+        return self.sys?.sunset == nil ? "--:--" : TimeInterval(self.sys!.sunset!).hourDisplayable
     }
     
     var numberOfDataItem: Int {
