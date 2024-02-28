@@ -1,5 +1,5 @@
 //
-//  WeatherView.swift
+//  WeatherActualView.swift
 //  WeaMap
 //
 //  Created by Mehdi Silini on 21/02/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WeatherView: View {
+struct WeatherActualView: View {
     
     @Environment(WeaMapModel.self) private var weaMapModel: WeaMapModel
     
@@ -65,7 +65,7 @@ struct WeatherView: View {
                         if let weatherConditions = weather.weather {
                             LazyVGrid(columns: columns) {
                                 ForEach(weatherConditions, id: \.id) { condition in
-                                    WeatherConditionCard(weatherData: condition)
+                                    WeatherConditionCard(weatherData: .remote(condition))
                                 }
                                 ForEach(weather.groupedWeatherData) { data in
                                     WeatherDataCard(weatherData: data.value, unit: data.unit, description: data.description)
@@ -80,5 +80,5 @@ struct WeatherView: View {
 }
 
 #Preview {
-    WeatherView().environment(WeaMapModel.shared)
+    WeatherActualView().environment(WeaMapModel.shared)
 }

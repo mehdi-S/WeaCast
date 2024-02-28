@@ -13,6 +13,7 @@ struct WeatherDisplayable: Identifiable, Hashable {
     var header: HeaderDisplayable
     var imageDisplayable: [ImageDisplayable]
     var numberDisplayable: [NumberDisplayable]
+    var gradientColor: GradientColor
     
     var id: Self { self }
     
@@ -69,6 +70,10 @@ struct WeatherDisplayable: Identifiable, Hashable {
             }
         }
     }
+    
+    var numberOfColumnToDisplay: Int {
+        (self.imageDisplayable.count + self.numberDisplayable.count) % 2 == 0 ? 2 : 3
+    }
 }
 
 extension WeatherDisplayable {
@@ -83,8 +88,8 @@ extension WeatherDisplayable {
                                                                         sunset: WeatherDisplayable.ImageDisplayable(value: .system(systemId: "sunset.fill"),
                                                                                                                     description: "Sunset")),
                            imageDisplayable: [
-                            WeatherDisplayable.ImageDisplayable(value: .async(networkId: "https://openweathermap.org/img/wn/02d@2x.png"),
-                                                                                  description: "Cloudy")
+                            WeatherDisplayable.ImageDisplayable(value: .async(networkId: "02d"),
+                                                                description: "Cloudy")
                            ],
                            numberDisplayable: [
                             WeatherDisplayable.NumberDisplayable(value: 6, unit: "°C", description: "°C Min"),
@@ -95,6 +100,8 @@ extension WeatherDisplayable {
                             WeatherDisplayable.NumberDisplayable(value: 1200, unit: "m", description: "Visibility"),
                             WeatherDisplayable.NumberDisplayable(value: 20, unit: "%", description: "Cloudiness"),
                             WeatherDisplayable.NumberDisplayable(value: 32, unit: "mm", description: "Rain last 3h"),
-                           ])
+                           ],
+                           gradientColor: GradientColor(colorPalette: AppColors.dayColorPalette, center: .top)
+        )
     }
 }

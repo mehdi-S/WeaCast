@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Algorithms
 
 // MARK: - ForecastDTO
 struct ForecastDTO: Codable {
@@ -69,9 +70,8 @@ struct ForecastDTO: Codable {
         }
         
         // MARK: - Weather
-        struct Weather: Codable {
-            var id: Int?
-            var main, description, icon: String?
+        struct Weather: Codable, Hashable {
+            var description, icon: String
         }
         
         // MARK: - Wind
@@ -98,20 +98,19 @@ extension ForecastDTO {
         let humidity: Double = selectedDayForecast.compactMap{ $0.main?.humidity }.average
         let pressure: Double = selectedDayForecast.compactMap{ $0.main?.pressure }.average
         let temp: Double = selectedDayForecast.compactMap{ $0.main?.temp }.average
-        let tempMin: Double = selectedDayForecast.compactMap{ $0.main?.tempMin }.average
-        let tempMax: Double = selectedDayForecast.compactMap{ $0.main?.tempMax }.average
-        let feelsLike: Double = selectedDayForecast.compactMap{ $0.main?.feelsLike }.average
         let visibility: Double = selectedDayForecast.compactMap{ $0.visibility }.average
-        let rain3h: Double = selectedDayForecast.compactMap{ $0.rain?.the3H }.average
         let clouds: Double = selectedDayForecast.compactMap{ $0.clouds?.all }.average
         
-        let weathers: [ForecastDTO.List.Weather] = Array(selectedDayForecast.compactMap { $0.weather }.joined())
-        let mostCommonWeather = weathers.compactMap { $0.description }.mostCommonElement()
-        let weatherIcon = weathers.first { $0.description == mostCommonWeather }?.icon
-        let weatherIconDisplayable = weatherIcon == nil || weatherIcon!.isEmpty ? WeatherDisplayable.ImageDisplayable.ImageType.system(systemId: "") : WeatherDisplayable.ImageDisplayable.ImageType.async(networkId: weatherIcon!)
+        let weathers: [ForecastDTO.List.Weather] = Array(selectedDayForecast.compactMap { $0.weather }.joined().filter { $0.icon.contains("d") }.uniqued())        
+        let weatherData = weathers.map{ WeatherDisplayable.ImageDisplayable(value: .async(networkId: $0.icon), description: $0.description) }
         
-        
-        let weatherData = WeatherDisplayable.ImageDisplayable(value: weatherIconDisplayable, description: mostCommonWeather)
+        var gradientColor: GradientColor {
+            if let sunrise = self.city?.sunrise, let sunset = self.city?.sunset {
+                return GradientColor(for: Date().timeIntervalSince1970, sunrise: TimeInterval(sunrise), sunset: TimeInterval(sunset))
+            } else {
+                return GradientColor()
+            }
+        }
         
         return WeatherDisplayable(date: WeatherDisplayable.WeatherDate(index: offset),
                                   locationTitle: self.city?.name ?? "no location found",
@@ -122,15 +121,12 @@ extension ForecastDTO {
                                                                                                                                  description: "Temperature"),
                                                                                sunset: WeatherDisplayable.ImageDisplayable(value: .system(systemId: "sunset.fill"),
                                                                                                                            description: sunsetDisplayable)),
-                                  imageDisplayable: [weatherData],
-                                  numberDisplayable: [WeatherDisplayable.NumberDisplayable(value: tempMin, unit: "°C", description: "°C Min"),
-                                                      WeatherDisplayable.NumberDisplayable(value: tempMax, unit: "°C", description: "°C Max"),
-                                                      WeatherDisplayable.NumberDisplayable(value: feelsLike, unit: "°C", description: "°C Felt"),
-                                                      WeatherDisplayable.NumberDisplayable(value: humidity, unit: "%", description: "Humidity"),
+                                  imageDisplayable: weatherData,
+                                  numberDisplayable: [WeatherDisplayable.NumberDisplayable(value: humidity, unit: "%", description: "Humidity"),
                                                       WeatherDisplayable.NumberDisplayable(value: pressure, unit: "hPa", description: "Pressure"),
                                                       WeatherDisplayable.NumberDisplayable(value: visibility, unit: "m", description: "Visibility"),
                                                       WeatherDisplayable.NumberDisplayable(value: clouds, unit: "%", description: "Cloudiness"),
-                                                      WeatherDisplayable.NumberDisplayable(value: rain3h, unit: "mm", description: "Rain last 3h"),
-                                                     ])
+                                                     ],
+                                  gradientColor: gradientColor)
     }
 }

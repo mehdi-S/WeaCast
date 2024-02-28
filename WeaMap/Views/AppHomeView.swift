@@ -16,13 +16,18 @@ struct AppHomeView: View {
             WeatherListView(selectedDataBinding: $selectedWeatherDisplayable)
                 .navigationTitle("Weather forecast")
         } detail: {
-            if selectedWeatherDisplayable == nil || selectedWeatherDisplayable?.date.index == 0 {
-                WeatherView()
+            if let displayable = selectedWeatherDisplayable, selectedWeatherDisplayable?.date.index != 0 {
+                WeatherForecastView(weatherDisplayableBinding: Binding(
+                    get: { selectedWeatherDisplayable ?? displayable },
+                    set: { selectedWeatherDisplayable = $0 })
+                )
+                .toolbarBackground(.ultraThinMaterial)
+                .navigationBarTitleDisplayMode(.inline)
+            } else {
+                WeatherActualView()
                     .environment(weaMapModel)
                     .toolbarBackground(.ultraThinMaterial)
-            } else {
-                Text(selectedWeatherDisplayable?.header.temperature.dataDescription ?? "nil")
-                    .toolbarBackground(.ultraThinMaterial)
+                    .navigationBarTitleDisplayMode(.inline)
             }
         }
     }
