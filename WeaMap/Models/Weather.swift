@@ -91,11 +91,19 @@ extension WeatherDTO {
     }
     
     var sunriseDisplayable: String {
-        return self.sys?.sunrise == nil ? "--:--" : TimeInterval(self.sys!.sunrise!).hourDisplayable
+        if let tzShift = self.timezone, let sunriseUTC = self.sys?.sunrise {
+            return TimeInterval(sunriseUTC).hourDisplayable(tzShift)
+        } else {
+            return "--:--"
+        }
     }
     
     var sunsetDisplayable: String {
-        return self.sys?.sunset == nil ? "--:--" : TimeInterval(self.sys!.sunset!).hourDisplayable
+        if let tzShift = self.timezone, let sunsetUTC = self.sys?.sunset {
+            return TimeInterval(sunsetUTC).hourDisplayable(tzShift)
+        } else {
+            return "--:--"
+        }
     }
     
     var numberOfDataItem: Int {

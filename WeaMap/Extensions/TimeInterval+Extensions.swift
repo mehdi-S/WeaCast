@@ -8,10 +8,11 @@
 import Foundation
 
 extension TimeInterval {
-    var hourDisplayable: String {
+    func hourDisplayable(_ secondsFromGMT: Int = 0) -> String {
         let formatter = AppUtilities.dateFormatter
         formatter.dateFormat = "HH:mm"
-        let date = Date(timeIntervalSince1970: self + Double(TimeZone.current.secondsFromGMT()))
+        formatter.timeZone = TimeZone(secondsFromGMT: secondsFromGMT)
+        let date = Date(timeIntervalSince1970: self)
         return formatter.string(from: date).description
     }
 }

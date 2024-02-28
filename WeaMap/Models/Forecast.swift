@@ -92,8 +92,21 @@ extension ForecastDTO {
         
         let selectedDayForecast: [ForecastDTO.List] = Array(daysData[offset*8...offset*8+7])
         
-        let sunriseDisplayable = self.city?.sunrise == nil ? "--:--" : TimeInterval(self.city!.sunrise!).hourDisplayable
-        let sunsetDisplayable = self.city?.sunset == nil ? "--:--" : TimeInterval(self.city!.sunset!).hourDisplayable
+        var sunriseDisplayable: String {
+            if let tzShift = self.city?.timezone, let sunriseUTC = self.city?.sunrise {
+                return TimeInterval(sunriseUTC).hourDisplayable(tzShift)
+            } else {
+                return "--:--"
+            }
+        }
+        
+        var sunsetDisplayable: String {
+            if let tzShift = self.city?.timezone, let sunsetUTC = self.city?.sunset {
+                return TimeInterval(sunsetUTC).hourDisplayable(tzShift)
+            } else {
+                return "--:--"
+            }
+        }
         
         let humidity: Double = selectedDayForecast.compactMap{ $0.main?.humidity }.average
         let pressure: Double = selectedDayForecast.compactMap{ $0.main?.pressure }.average

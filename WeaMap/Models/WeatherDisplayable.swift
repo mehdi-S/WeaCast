@@ -65,7 +65,7 @@ struct WeatherDisplayable: Identifiable, Hashable {
                 dateComponent.day = index
                 let formatter = AppUtilities.dateFormatter
                 formatter.dateStyle = .long
-                let futureDate = Calendar.current.date(byAdding: dateComponent, to: Date()) ?? Date().addingTimeInterval(TimeInterval(86400))
+                let futureDate = Calendar.current.date(byAdding: dateComponent, to: Date()) ?? Date().addingTimeInterval(TimeInterval(TimeZone.current.secondsFromGMT()) + (TimeInterval(86400) * Double(index)))
                 return formatter.string(from: futureDate)
             }
         }
