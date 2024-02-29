@@ -33,8 +33,8 @@ struct WeatherListView: View {
                 List(datas, selection: $selectedCellData) { item in
                     Section {
                         NavigationLink(item.date.displayable, value: item)
-                    }
-                }
+                    }.accessibilityIdentifier("cell_section")
+                }.accessibilityIdentifier("forecast_days_list")
         case .failed(let error):
             ErrorView(error: error, asyncOnTap: {
                 await weaMapModel.fetchForecast(coordinate: coordinate)

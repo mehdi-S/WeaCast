@@ -43,7 +43,7 @@ struct WeatherActualView: View {
     func LoadedView(data weather: WeatherDTO) -> some View {
         @State var gradientColor: GradientColor = weaMapModel.actualGradientColor
         @State var columns = Array(repeating: GridItem(.flexible()),
-                                   count: weather.numberOfDataItem % 2 == 0 ? 2 : 3)
+                                   count: 3)
         
         ZStack {
             RadialGradient(colors: gradientColor.colorPalette,
