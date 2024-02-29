@@ -5,4 +5,5 @@
 
 #  Todo
 
-- rename to WeaCast
+- more UI Tests
+
